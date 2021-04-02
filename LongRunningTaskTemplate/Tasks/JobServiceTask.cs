@@ -55,7 +55,6 @@ namespace LongRunningTaskTemplate
                     Console.WriteLine($"<<<< LOCKED {JobTaskName} - {Task.CurrentId}");
                     Logger.LogInformation($"<<<< LOCKED {JobTaskName} - {Task.CurrentId}");
                     var result = await Execute();
-                    _lock.Release();
                     await Task.Delay(100);
                     Console.WriteLine($"RELEASED {JobTaskName} - {Task.CurrentId}");
                     Logger.LogInformation($"RELEASED {JobTaskName} - {Task.CurrentId}");
@@ -63,12 +62,12 @@ namespace LongRunningTaskTemplate
                 }
                 catch (Exception ex)
                 {
-                    _lock.Release();
                     Console.WriteLine($"{ex.Message} - {ex.StackTrace}");
                     Logger.LogError(ex, $"Runing a task {JobTaskName}");
                 }
                 finally
                 {
+                    _lock.Release();
                     if (_serviceScope.IsValueCreated)
                     {
                         _serviceScope.Value.Dispose();
