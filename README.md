@@ -1,5 +1,5 @@
-# LongRunningTaskTemplate
-LongRunningTaskTemplate for DotNet Core
+# LongRunningTask Template
+Long Running Task Template for DotNet Core
 
 There are multiple usage of this template:
 
