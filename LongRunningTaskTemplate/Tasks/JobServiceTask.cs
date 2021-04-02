@@ -20,7 +20,11 @@ namespace LongRunningTaskTemplate
         {
             get
             {
-                return _logger ?? ServiceProvider.GetService<ILogger<JobServiceTask>>();
+                if (_logger == null)
+                {
+                    _logger = ServiceProvider.GetService<ILogger<JobServiceTask>>();
+                }
+                return _logger;
             }
         }
         protected IServiceProvider ServiceProvider
