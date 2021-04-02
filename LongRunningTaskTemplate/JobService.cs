@@ -26,13 +26,13 @@ namespace LongRunningTaskTemplate
                 while (true)
                 {
                     List<JobServiceTask> tasks = new List<JobServiceTask>{
-                                        new SendEmailNotificationTask(_serviceScopeFactory),
-                                        new ResendFailuredEmailNotificationTask(_serviceScopeFactory)
+                                        new ResendFailuredEmailNotificationTask(_serviceScopeFactory),
+                                        new SendEmailNotificationTask(_serviceScopeFactory)
+                                        
                                         };
 
-                    
-                    tasks[1].Run();
-                    tasks[0].Run();
+
+                    tasks.ForEach((t) => t.Run());
                     Task.Delay(100).GetAwaiter().GetResult();
                 }
             }
