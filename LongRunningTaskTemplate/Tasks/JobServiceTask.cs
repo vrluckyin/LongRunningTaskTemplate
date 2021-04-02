@@ -75,11 +75,12 @@ namespace LongRunningTaskTemplate
                     }
                 }
             }
-            else
-            {
-                Console.WriteLine($"FAILED {JobTaskName} - {Task.CurrentId}");
-                Logger.LogInformation($"FAILED {JobTaskName} - {Task.CurrentId}");
-            }
+            /*Else part is only for debug*/
+            //else
+            //{
+            //    Console.WriteLine($"FAILED {JobTaskName} - {Task.CurrentId}");
+            //    Logger.LogInformation($"FAILED {JobTaskName} - {Task.CurrentId}");
+            //}
             return null;
         }
     }
